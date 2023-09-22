@@ -21,10 +21,7 @@ def compress_button(zipname):
 is_going_on = True
 while is_going_on:
     event,values = window.read()
-    print(1, event)
-    print(2, values)
-    print(3, values["compress"])
-    print(4, values["destination"])
+
 
     match event:
         case "button_compress":
