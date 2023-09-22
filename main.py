@@ -9,7 +9,8 @@ inp_box2 = sg.InputText(tooltip="Enter todo",key="destination",size=30)
 button_chose1 = sg.FilesBrowse("Choose")
 button_chose2 = sg.FolderBrowse("Choose")
 button_compress = sg.Button("Compress",key="button_compress")
-layout= [[label1,inp_box1,button_chose1],[label2,inp_box2,button_chose2],[button_compress]]
+output_label = sg.Text(key="outputLabel")
+layout= [[label1,inp_box1,button_chose1],[label2,inp_box2,button_chose2],[button_compress,output_label]]
 window = sg.Window("My To-Do App",
                    layout=layout,
                    font=("Helvetica",20))
@@ -22,7 +23,6 @@ is_going_on = True
 while is_going_on:
     event,values = window.read()
 
-
     match event:
         case "button_compress":
             zip_name = values["compress"].split("/")
@@ -31,6 +31,7 @@ while is_going_on:
             if os.path.exists(values["destination"]+"/"+zip_name):
                 print(zip_name)
                 print("ZIP file created")
+                output_label.update("The Compression Process is successfully done.")
             else:
                 print("ZIP file not created")
 
